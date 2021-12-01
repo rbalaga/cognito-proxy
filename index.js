@@ -72,6 +72,6 @@ app.use("/", (req, res) => {
   res.end("Hello from cognito proxy");
 });
 
-app.listen(4000, () => {
+app.listen(process.env.PORT, () => {
   console.log("server is running at 4000 port.");
 });
