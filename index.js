@@ -38,7 +38,10 @@ const cognitoLoginProxy = createProxyMiddleware({
     if (res.hasHeader("location")) {
       const location = res.getHeader("location") || "";
       res.removeHeader("location");
-      res.setHeader("location", location.replace("https://search-connect-ctr-agent-records-orcax4mgypqgo7ho2yze6eqwtm.us-east-1.es.amazonaws.com/_dashboards", "http://127.0.0.1:4000/_dashboards"));
+      res.setHeader(
+        "location",
+        location.replace("https://search-connect-ctr-agent-records-orcax4mgypqgo7ho2yze6eqwtm.us-east-1.es.amazonaws.com/_dashboards", "https://cognitologin.herokuapp.com/_dashboards")
+      );
     }
     return responseBuffer; // manipulate response and return the result
   }),
@@ -59,7 +62,7 @@ const openSearchDashboardProxy = createProxyMiddleware({
     if (res.hasHeader("location")) {
       const location = res.getHeader("location");
       res.removeHeader("location");
-      res.setHeader("location", location.replace("https://pace-ram.auth.us-east-1.amazoncognito.com/login", "http://127.0.0.1:4000/login"));
+      res.setHeader("location", location.replace("https://pace-ram.auth.us-east-1.amazoncognito.com/login", "https://cognitologin.herokuapp.com/login"));
     }
     return responseBuffer;
   }),
