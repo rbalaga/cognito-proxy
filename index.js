@@ -1,7 +1,8 @@
 const express = require("express");
 const { createProxyMiddleware, responseInterceptor } = require("http-proxy-middleware");
-
+const cors = require("cors");
 const app = express();
+app.use(cors());
 
 const cognitoLoginProxy = createProxyMiddleware({
   target: "https://pace-ram.auth.us-east-1.amazoncognito.com",
@@ -77,7 +78,7 @@ app.use("/ram", (req, res) => {
 app.use("/", (req, res) => {
   res.end("Hello from cognito proxy");
 });
-
-app.listen(process.env.PORT, () => {
-  console.log("server is running at 4000 port.");
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`server is running at ${port} port.`);
 });
