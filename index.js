@@ -70,7 +70,10 @@ const openSearchDashboardProxy = createProxyMiddleware({
 
 app.use("/login", cognitoLoginProxy);
 app.use("/logout", cognitoLoginProxy);
-app.use("/_dashboards", openSearchDashboardProxy);
+app.use("/_dashboards/*", openSearchDashboardProxy);
+app.use("/ram", (req, res) => {
+  res.end("Hello RAM from cognito proxy");
+});
 app.use("/", (req, res) => {
   res.end("Hello from cognito proxy");
 });
