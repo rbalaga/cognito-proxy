@@ -67,8 +67,10 @@ const openSearchDashboardProxy = createProxyMiddleware({
 
 app.use("/login", cognitoLoginProxy);
 app.use("/logout", cognitoLoginProxy);
-
 app.use("/_dashboards", openSearchDashboardProxy);
+app.use("/", (req, res) => {
+  res.end("Hello from cognito proxy");
+});
 
 app.listen(4000, () => {
   console.log("server is running at 4000 port.");
